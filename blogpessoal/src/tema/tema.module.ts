@@ -10,5 +10,4 @@ import { TemaService } from "./services/tema.service";
     controllers: [TemaController],
     exports: [TypeOrmModule]
 })
-
-export class TemaModule{}
+export class TemaModule {}

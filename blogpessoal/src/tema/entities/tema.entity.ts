@@ -1,16 +1,18 @@
 import { IsNotEmpty } from "class-validator";
 import { Postagem } from "src/postagem/entities/postagem.entity";
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity ({name: 'tb_temas'})
+@Entity({name: 'tb_temas'})
 export class Tema{
-    @PrimaryGeneratedColumn() // Define o atributo como chave primaria e já adiciona o auto increment
+
+    @PrimaryGeneratedColumn()
     id: number;
 
-    @IsNotEmpty() // Verifica se a informação não está vazia
-    @Column ({length: 255, nullable: false}) // Definindo o tamanho do atributo e se ele pode ser nulo
-    descricao: String;
+    @IsNotEmpty()
+    @Column({length: 255, nullable: false})
+    descricao: string;
 
-    @OneToMany(() => Postagem, (postagem) => postagem.tema) // Chave estrangeira
+    @OneToMany(() => Postagem, (postagem) => postagem.tema)
     postagem: Postagem[];
+    static id: any;
 }

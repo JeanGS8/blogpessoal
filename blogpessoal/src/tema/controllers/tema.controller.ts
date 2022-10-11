@@ -1,12 +1,15 @@
-import { HttpStatus, ParseIntPipe } from "@nestjs/common";
-import { Body, Controller, Delete, Get, HttpCode, Param, Put } from "@nestjs/common/decorators";
+import { Controller, Get } from "@nestjs/common";
+import { Body, Delete, HttpCode, Param, Post, Put } from "@nestjs/common/decorators";
+import { HttpStatus } from "@nestjs/common/enums";
+import { ParseIntPipe } from "@nestjs/common/pipes";
 import { Tema } from "../entities/tema.entity";
 import { TemaService } from "../services/tema.service";
 
+
 @Controller('/tema')
 export class TemaController{
-    constructor(private readonly temaService: TemaService){}
-    
+    constructor (private readonly temaService: TemaService){}
+
     @Get()
     @HttpCode(HttpStatus.OK)
     findAll(): Promise<Tema[]>{
@@ -15,35 +18,35 @@ export class TemaController{
 
     @Get('/:id')
     @HttpCode(HttpStatus.OK)
-    findById(
+    findByAll(
         @Param('id', ParseIntPipe)
         id: number
     ): Promise<Tema>{
         return this.temaService.findById(id);
     }
 
-    @Get('/descricao/:desscricao')
+    @Get('/descricao/:descricao')
     @HttpCode(HttpStatus.OK)
-    findByDescricao(
-        @Param('descricao')
-        descricao: string
-    ): Promise<Tema[]>{
+    findByDescricao(@Param('descricao')descricao: string): Promise<Tema[]>{
         return this.temaService.findByDescricao(descricao);
     }
 
-    @Put()
+    @Post()
     @HttpCode(HttpStatus.CREATED)
     create(
-        @Body('descricao')
+        @Body()
         tema: Tema
     ): Promise<Tema>{
-        return this.temaService.create(tema);
+        return this.temaService.create(tema); //criar
     }
 
     @Put()
     @HttpCode(HttpStatus.OK)
-    update(@Body() Tema: Tema): Promise<Tema> {
-        return this.temaService.update(Tema);
+    update(
+        @Body()
+        tema: Tema
+    ): Promise<Tema>{
+        return this.temaService.update(tema);
     }
 
     @Delete('/:id')
@@ -51,8 +54,8 @@ export class TemaController{
     delete(
         @Param('id', ParseIntPipe)
         id: number
-    ){
-        return this.temaService.delete(id);
+    ) {
+
     }
 
 }
