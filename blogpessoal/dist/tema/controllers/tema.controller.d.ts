@@ -4,9 +4,9 @@ export declare class TemaController {
     private readonly temaService;
     constructor(temaService: TemaService);
     findAll(): Promise<Tema[]>;
-    findById(id: number): Promise<Tema>;
+    findByAll(id: number): Promise<Tema>;
     findByDescricao(descricao: string): Promise<Tema[]>;
     create(tema: Tema): Promise<Tema>;
-    update(Tema: Tema): Promise<Tema>;
-    delete(id: number): Promise<import("typeorm").DeleteResult>;
+    update(tema: Tema): Promise<Tema>;
+    delete(id: number): void;
 }

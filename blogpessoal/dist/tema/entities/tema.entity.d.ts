@@ -1,6 +1,7 @@
 import { Postagem } from "src/postagem/entities/postagem.entity";
 export declare class Tema {
     id: number;
-    descricao: String;
+    descricao: string;
     postagem: Postagem[];
+    static id: any;
 }

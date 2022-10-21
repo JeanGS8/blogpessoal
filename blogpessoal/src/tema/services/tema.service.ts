@@ -51,26 +51,36 @@ export class TemaService{
     });
    }
 
-   async create(tema: Tema): Promise<Tema>{
-      return await this.temaRepository.save(tema) //salvar ou melhor, fazer um POST
-   }
+    async create(tema: Tema): Promise<Tema>{
+        return await this.temaRepository.save(tema) //salvar ou melhor, fazer um POST
+    }
 
-   async update(tema: Tema): Promise<Tema>{
-      let buscaTema: Tema = await this.findById(tema.id)
+    async update(tema: Tema): Promise<Tema>{
+        let buscaTema: Tema = await this.findById(tema.id)
 
-      if (!buscaTema || !tema.id)
-        throw new HttpException('Tema não encontrado', HttpStatus.NOT_FOUND);
-
+        if (!buscaTema || !tema.id)
+            throw new HttpException('Tema não encontrado', HttpStatus.NOT_FOUND);
         return await this.temaRepository.save(tema); //update
+    }
 
-   }
+	/**
+    * @desc apaga um tema do banco de dados
+	* 
+    * @param id identificado do tema a ser apagado
+    * 
+    * @returns conteudo vazio
+    * 
+    * @throws HttpException caso o id não seja encontrado
+    * 
+    * @example
+    * delete(2); // Sera deletado o tema com id = 2
+    * delete(5); // Sera deletado o tema com id = 5
+	 */
+    async delete (id: number): Promise<DeleteResult>{
+        let buscaTema = await this.findById(id)
 
-   async delete (id: number): Promise<DeleteResult>{
-    let buscaTema = await this.findById(id)
-
-    if(!buscaTema)
-    throw new HttpException('Tema não encontrada', HttpStatus.NOT_FOUND)
-
+        if(!buscaTema)
+            throw new HttpException('Tema não encontrada', HttpStatus.NOT_FOUND)
     return await this.temaRepository.delete(id); //deletar
    }
 }

@@ -1,5 +1,6 @@
-import { Module, Options } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from './auth/auth.module';
 import { Postagem } from './postagem/entities/postagem.entity';
 import { PostagemModules } from './postagem/postagem.module';
 import { Tema } from './tema/entities/tema.entity';
@@ -18,7 +19,8 @@ import { TemaModule } from './tema/tema.module';
       synchronize: true // ele sincroniza com o banco dedos automaticamente
     }), // importei o ORM
     PostagemModules,
-    TemaModule
+    TemaModule,
+    AuthModule
   ],
   controllers: [],
   providers: [],

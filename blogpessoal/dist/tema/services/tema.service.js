@@ -14,9 +14,11 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TemaService = void 0;
 const common_1 = require("@nestjs/common");
+const enums_1 = require("@nestjs/common/enums");
+const exceptions_1 = require("@nestjs/common/exceptions");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
-const tema_entity_1 = require("../entities/tema.entity");
+const Tema_entity_1 = require("../entities/Tema.entity");
 let TemaService = class TemaService {
     constructor(temaRepository) {
         this.temaRepository = temaRepository;
@@ -37,8 +39,8 @@ let TemaService = class TemaService {
                 postagem: true
             }
         });
-        if (!tema)
-            throw new common_1.HttpException("Tema não encontrado!", common_1.HttpStatus.NOT_FOUND);
+        if (!Tema_entity_1.Tema)
+            throw new exceptions_1.HttpException('Tema não encontrada', enums_1.HttpStatus.NOT_FOUND);
         return tema;
     }
     async findByDescricao(descricao) {
@@ -57,19 +59,19 @@ let TemaService = class TemaService {
     async update(tema) {
         let buscaTema = await this.findById(tema.id);
         if (!buscaTema || !tema.id)
-            throw new common_1.HttpException("Tema não encontrado!", common_1.HttpStatus.NOT_FOUND);
+            throw new exceptions_1.HttpException('Tema não encontrado', enums_1.HttpStatus.NOT_FOUND);
         return await this.temaRepository.save(tema);
     }
     async delete(id) {
         let buscaTema = await this.findById(id);
         if (!buscaTema)
-            throw new common_1.HttpException('Tema não encontrado!', common_1.HttpStatus.NOT_FOUND);
+            throw new exceptions_1.HttpException('Tema não encontrada', enums_1.HttpStatus.NOT_FOUND);
         return await this.temaRepository.delete(id);
     }
 };
 TemaService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_1.InjectRepository)(tema_entity_1.Tema)),
+    __param(0, (0, typeorm_1.InjectRepository)(Tema_entity_1.Tema)),
     __metadata("design:paramtypes", [typeorm_2.Repository])
 ], TemaService);
 exports.TemaService = TemaService;

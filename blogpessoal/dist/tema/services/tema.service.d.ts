@@ -1,5 +1,5 @@
 import { DeleteResult, Repository } from "typeorm";
-import { Tema } from "../entities/tema.entity";
+import { Tema } from "../entities/Tema.entity";
 export declare class TemaService {
     private temaRepository;
     constructor(temaRepository: Repository<Tema>);

@@ -15,6 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TemaController = void 0;
 const common_1 = require("@nestjs/common");
 const decorators_1 = require("@nestjs/common/decorators");
+const enums_1 = require("@nestjs/common/enums");
+const pipes_1 = require("@nestjs/common/pipes");
 const tema_entity_1 = require("../entities/tema.entity");
 const tema_service_1 = require("../services/tema.service");
 let TemaController = class TemaController {
@@ -24,7 +26,7 @@ let TemaController = class TemaController {
     findAll() {
         return this.temaService.findAll();
     }
-    findById(id) {
+    findByAll(id) {
         return this.temaService.findById(id);
     }
     findByDescricao(descricao) {
@@ -33,47 +35,46 @@ let TemaController = class TemaController {
     create(tema) {
         return this.temaService.create(tema);
     }
-    update(Tema) {
-        return this.temaService.update(Tema);
+    update(tema) {
+        return this.temaService.update(tema);
     }
     delete(id) {
-        return this.temaService.delete(id);
     }
 };
 __decorate([
-    (0, decorators_1.Get)(),
-    (0, decorators_1.HttpCode)(common_1.HttpStatus.OK),
+    (0, common_1.Get)(),
+    (0, decorators_1.HttpCode)(enums_1.HttpStatus.OK),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], TemaController.prototype, "findAll", null);
 __decorate([
-    (0, decorators_1.Get)('/:id'),
-    (0, decorators_1.HttpCode)(common_1.HttpStatus.OK),
-    __param(0, (0, decorators_1.Param)('id', common_1.ParseIntPipe)),
+    (0, common_1.Get)('/:id'),
+    (0, decorators_1.HttpCode)(enums_1.HttpStatus.OK),
+    __param(0, (0, decorators_1.Param)('id', pipes_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
-], TemaController.prototype, "findById", null);
+], TemaController.prototype, "findByAll", null);
 __decorate([
-    (0, decorators_1.Get)('/descricao/:desscricao'),
-    (0, decorators_1.HttpCode)(common_1.HttpStatus.OK),
+    (0, common_1.Get)('/descricao/:descricao'),
+    (0, decorators_1.HttpCode)(enums_1.HttpStatus.OK),
     __param(0, (0, decorators_1.Param)('descricao')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], TemaController.prototype, "findByDescricao", null);
 __decorate([
-    (0, decorators_1.Put)(),
-    (0, decorators_1.HttpCode)(common_1.HttpStatus.CREATED),
-    __param(0, (0, decorators_1.Body)('descricao')),
+    (0, decorators_1.Post)(),
+    (0, decorators_1.HttpCode)(enums_1.HttpStatus.CREATED),
+    __param(0, (0, decorators_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [tema_entity_1.Tema]),
     __metadata("design:returntype", Promise)
 ], TemaController.prototype, "create", null);
 __decorate([
     (0, decorators_1.Put)(),
-    (0, decorators_1.HttpCode)(common_1.HttpStatus.OK),
+    (0, decorators_1.HttpCode)(enums_1.HttpStatus.OK),
     __param(0, (0, decorators_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [tema_entity_1.Tema]),
@@ -81,14 +82,14 @@ __decorate([
 ], TemaController.prototype, "update", null);
 __decorate([
     (0, decorators_1.Delete)('/:id'),
-    (0, decorators_1.HttpCode)(common_1.HttpStatus.NO_CONTENT),
-    __param(0, (0, decorators_1.Param)('id', common_1.ParseIntPipe)),
+    (0, decorators_1.HttpCode)(enums_1.HttpStatus.NO_CONTENT),
+    __param(0, (0, decorators_1.Param)('id', pipes_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
 ], TemaController.prototype, "delete", null);
 TemaController = __decorate([
-    (0, decorators_1.Controller)('/tema'),
+    (0, common_1.Controller)('/tema'),
     __metadata("design:paramtypes", [tema_service_1.TemaService])
 ], TemaController);
 exports.TemaController = TemaController;

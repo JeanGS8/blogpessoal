@@ -9,6 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
+const auth_module_1 = require("./auth/auth.module");
 const postagem_entity_1 = require("./postagem/entities/postagem.entity");
 const postagem_module_1 = require("./postagem/postagem.module");
 const tema_entity_1 = require("./tema/entities/tema.entity");
@@ -29,7 +30,8 @@ AppModule = __decorate([
                 synchronize: true
             }),
             postagem_module_1.PostagemModules,
-            tema_module_1.TemaModule
+            tema_module_1.TemaModule,
+            auth_module_1.AuthModule
         ],
         controllers: [],
         providers: [],
