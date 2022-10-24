@@ -24,7 +24,8 @@ let PostagemService = class PostagemService {
     async findAll() {
         return await this.postagemRepository.find({
             relations: {
-                tema: true
+                tema: true,
+                usuario: true
             }
         });
     }
@@ -34,7 +35,8 @@ let PostagemService = class PostagemService {
                 id
             },
             relations: {
-                tema: true
+                tema: true,
+                usuario: true
             }
         });
         if (!postagem)
@@ -47,7 +49,8 @@ let PostagemService = class PostagemService {
                 titulo: (0, typeorm_2.ILike)(`%${titulo}%`)
             },
             relations: {
-                tema: true
+                tema: true,
+                usuario: true
             }
         });
     }

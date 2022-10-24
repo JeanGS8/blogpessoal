@@ -14,6 +14,8 @@ const postagem_entity_1 = require("./postagem/entities/postagem.entity");
 const postagem_module_1 = require("./postagem/postagem.module");
 const tema_entity_1 = require("./tema/entities/tema.entity");
 const tema_module_1 = require("./tema/tema.module");
+const usuario_entity_1 = require("./usuario/entities/usuario.entity");
+const usuario_module_1 = require("./usuario/usuario.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -26,12 +28,13 @@ AppModule = __decorate([
                 username: 'root',
                 password: 'root',
                 database: 'db_blogpessoal',
-                entities: [postagem_entity_1.Postagem, tema_entity_1.Tema],
+                entities: [postagem_entity_1.Postagem, tema_entity_1.Tema, usuario_entity_1.Usuario],
                 synchronize: true
             }),
             postagem_module_1.PostagemModules,
             tema_module_1.TemaModule,
-            auth_module_1.AuthModule
+            auth_module_1.AuthModule,
+            usuario_module_1.UsuarioModule
         ],
         controllers: [],
         providers: [],

@@ -9,45 +9,42 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Postagem = void 0;
+exports.Usuario = void 0;
 const class_validator_1 = require("class-validator");
-const tema_entity_1 = require("../../tema/entities/tema.entity");
-const usuario_entity_1 = require("../../usuario/entities/usuario.entity");
+const postagem_entity_1 = require("../../postagem/entities/postagem.entity");
 const typeorm_1 = require("typeorm");
-let Postagem = class Postagem {
+let Usuario = class Usuario {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], Postagem.prototype, "id", void 0);
+], Usuario.prototype, "id", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
-    (0, typeorm_1.Column)({ length: 100, nullable: false }),
+    (0, typeorm_1.Column)({ length: 255, nullable: false }),
     __metadata("design:type", String)
-], Postagem.prototype, "titulo", void 0);
+], Usuario.prototype, "nome", void 0);
+__decorate([
+    (0, class_validator_1.IsEmail)(),
+    (0, typeorm_1.Column)({ length: 255, nullable: false }),
+    __metadata("design:type", String)
+], Usuario.prototype, "usuario", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
-    (0, typeorm_1.Column)({ length: 1000, nullable: false }),
+    (0, class_validator_1.MinLength)(8),
+    (0, typeorm_1.Column)({ length: 255, nullable: false }),
     __metadata("design:type", String)
-], Postagem.prototype, "texto", void 0);
+], Usuario.prototype, "senha", void 0);
 __decorate([
-    (0, typeorm_1.UpdateDateColumn)(),
-    __metadata("design:type", Date)
-], Postagem.prototype, "data", void 0);
+    (0, typeorm_1.Column)({ length: 5000 }),
+    __metadata("design:type", String)
+], Usuario.prototype, "foto", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => tema_entity_1.Tema, (tema) => tema.postagem, {
-        onDelete: "CASCADE"
-    }),
-    __metadata("design:type", tema_entity_1.Tema)
-], Postagem.prototype, "tema", void 0);
-__decorate([
-    (0, typeorm_1.ManyToOne)(() => usuario_entity_1.Usuario, (usuario) => usuario.postagem, {
-        onDelete: "CASCADE"
-    }),
-    __metadata("design:type", usuario_entity_1.Usuario)
-], Postagem.prototype, "usuario", void 0);
-Postagem = __decorate([
-    (0, typeorm_1.Entity)({ name: 'tb_postagens' })
-], Postagem);
-exports.Postagem = Postagem;
-//# sourceMappingURL=postagem.entity.js.map
+    (0, typeorm_1.OneToMany)(() => postagem_entity_1.Postagem, (postagem) => postagem.usuario),
+    __metadata("design:type", Array)
+], Usuario.prototype, "postagem", void 0);
+Usuario = __decorate([
+    (0, typeorm_1.Entity)({ name: 'tb_usuario' })
+], Usuario);
+exports.Usuario = Usuario;
+//# sourceMappingURL=usuario.entity.js.map

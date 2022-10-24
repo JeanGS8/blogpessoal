@@ -1,6 +1,9 @@
 import { Postagem } from "src/postagem/entities/postagem.entity";
-export declare class Tema {
+export declare class Usuario {
     id: number;
-    descricao: string;
+    nome: string;
+    usuario: string;
+    senha: string;
+    foto: string;
     postagem: Postagem[];
 }
