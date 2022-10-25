@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsuarioController = void 0;
 const common_1 = require("@nestjs/common");
+const jwt_auth_guard_1 = require("../../auth/guard/jwt-auth.guard");
 const usuario_entity_1 = require("../entities/usuario.entity");
 const usuario_service_1 = require("../services/usuario.service");
 let UsuarioController = class UsuarioController {
@@ -31,6 +32,7 @@ let UsuarioController = class UsuarioController {
     }
 };
 __decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Get)('/all'),
     (0, common_1.HttpCode)(common_1.HttpStatus.OK),
     __metadata("design:type", Function),
@@ -46,6 +48,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsuarioController.prototype, "create", null);
 __decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Put)('/atualizar'),
     (0, common_1.HttpCode)(common_1.HttpStatus.OK),
     __param(0, (0, common_1.Body)()),

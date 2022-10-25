@@ -1,4 +1,5 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Post, Put } from "@nestjs/common";
+import { Body, Controller, Get, HttpCode, HttpStatus, Post, Put, UseGuards } from "@nestjs/common";
+import { JwtAuthGuard } from "../../auth/guard/jwt-auth.guard";
 import { Usuario } from "../entities/usuario.entity";
 import { UsuarioService } from "../services/usuario.service";
 
@@ -9,6 +10,7 @@ export class UsuarioController{
         private readonly usuarioService: UsuarioService
     ){}
 
+    @UseGuards(JwtAuthGuard)
     @Get('/all')
     @HttpCode(HttpStatus.OK)
     async findAll(): Promise<Usuario[]>{
@@ -21,6 +23,7 @@ export class UsuarioController{
         return await this.usuarioService.create(usuario);
     }
 
+    @UseGuards(JwtAuthGuard)
     @Put('/atualizar')
     @HttpCode(HttpStatus.OK)
     async update(@Body() usuario: Usuario): Promise<Usuario>{

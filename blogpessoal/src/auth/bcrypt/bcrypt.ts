@@ -11,8 +11,8 @@ export class Bcrypt{
         return await bcrypt.hash(senha, saltos); // ele está criptografando a senha com 10 caracteres aleatorio
     }
 
-    async compararSenha(senhaBanco: string, senhaDigitada: string): Promise<boolean>{
+    async compararSenhas(senhaBanco: string, senhaDigitada: string): Promise<boolean>{
 
-        return bcrypt.compareSync(senhaBanco, senhaDigitada);
+        return bcrypt.compareSync(senhaDigitada, senhaBanco);
     }
 }

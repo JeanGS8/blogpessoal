@@ -14,8 +14,8 @@ let Bcrypt = class Bcrypt {
         let saltos = 10;
         return await bcrypt.hash(senha, saltos);
     }
-    async compararSenha(senhaBanco, senhaDigitada) {
-        return bcrypt.compareSync(senhaBanco, senhaDigitada);
+    async compararSenhas(senhaBanco, senhaDigitada) {
+        return bcrypt.compareSync(senhaDigitada, senhaBanco);
     }
 };
 Bcrypt = __decorate([
