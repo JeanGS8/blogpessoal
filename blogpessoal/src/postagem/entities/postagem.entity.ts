@@ -2,7 +2,6 @@ import { IsNotEmpty } from "class-validator";
 import { Tema } from "../../tema/entities/tema.entity";
 import { Usuario } from "../../usuario/entities/usuario.entity";
 import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn, TableForeignKey, UpdateDateColumn } from "typeorm";
-import { ForeignKeyMetadata } from "typeorm/metadata/ForeignKeyMetadata";
 
 @Entity({name: 'tb_postagens'}) // Criando a entidade tb_postagem
 export class Postagem{
