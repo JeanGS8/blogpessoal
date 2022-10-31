@@ -16,39 +16,40 @@ export class TemaService{
 
     //Vai criar outro programa para ser rapido
     async findAll(): Promise<Tema[]>{   //Promise é uma promeça que ele vai retornar
-      return await this.temaRepository.find({
-        relations: {
-          postagem: true
-        }
-      });
+
+		return await this.temaRepository.find({
+			relations: {
+				postagem: true
+			}
+		});
     } 
     
     async findById(id: number): Promise<Tema> {
 
-      let tema = await this.temaRepository.findOne({
-        where: {
-          id
-        },
-        relations: {
-          postagem: true
-        }
-      })
+		let tema = await this.temaRepository.findOne({
+			where: {
+				id
+			},
+			relations: {
+				postagem: true
+			}
+		})
 
-      if (!Tema)
-        throw new HttpException('Tema não encontrada', HttpStatus.NOT_FOUND);
-
-        return tema;
+      	if (!Tema)
+        	throw new HttpException('Tema não encontrada', HttpStatus.NOT_FOUND);
+    	return tema;
    }
 
    async findByDescricao(descricao: string): Promise<Tema[]>{
-    return await this.temaRepository.find({ //serve para encontrar
-      where: {
-        descricao: ILike(`%${descricao}%`)
-      },
-        relations: {
-          postagem: true
-        }
-    });
+
+		return await this.temaRepository.find({ //serve para encontrar
+			where: {
+				descricao: ILike(`%${descricao}%`)
+			},
+			relations: {
+				postagem: true
+			}
+		});
    }
 
     async create(tema: Tema): Promise<Tema>{
@@ -77,10 +78,10 @@ export class TemaService{
     * delete(5); // Sera deletado o tema com id = 5
 	 */
     async delete (id: number): Promise<DeleteResult>{
-        let buscaTema = await this.findById(id)
+    	let buscaTema = await this.findById(id)
 
         if(!buscaTema)
             throw new HttpException('Tema não encontrada', HttpStatus.NOT_FOUND)
-    return await this.temaRepository.delete(id); //deletar
+    	return await this.temaRepository.delete(id); //deletar
    }
 }

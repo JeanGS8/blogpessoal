@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsuarioController = void 0;
 const common_1 = require("@nestjs/common");
+const dist_1 = require("@nestjs/swagger/dist");
 const jwt_auth_guard_1 = require("../../auth/guard/jwt-auth.guard");
 const usuario_entity_1 = require("../entities/usuario.entity");
 const usuario_service_1 = require("../services/usuario.service");
@@ -32,6 +33,7 @@ let UsuarioController = class UsuarioController {
     }
 };
 __decorate([
+    (0, dist_1.ApiBearerAuth)(),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Get)('/all'),
     (0, common_1.HttpCode)(common_1.HttpStatus.OK),
@@ -48,6 +50,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsuarioController.prototype, "create", null);
 __decorate([
+    (0, dist_1.ApiBearerAuth)(),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Put)('/atualizar'),
     (0, common_1.HttpCode)(common_1.HttpStatus.OK),
@@ -57,6 +60,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsuarioController.prototype, "update", null);
 UsuarioController = __decorate([
+    (0, dist_1.ApiTags)('Usuario'),
     (0, common_1.Controller)('/usuarios'),
     __metadata("design:paramtypes", [usuario_service_1.UsuarioService])
 ], UsuarioController);

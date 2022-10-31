@@ -21,6 +21,7 @@ const pipes_1 = require("@nestjs/common/pipes");
 const jwt_auth_guard_1 = require("../../auth/guard/jwt-auth.guard");
 const tema_entity_1 = require("../entities/tema.entity");
 const tema_service_1 = require("../services/tema.service");
+const decorators_2 = require("@nestjs/swagger/dist/decorators");
 let TemaController = class TemaController {
     constructor(temaService) {
         this.temaService = temaService;
@@ -91,8 +92,10 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], TemaController.prototype, "delete", null);
 TemaController = __decorate([
+    (0, decorators_2.ApiTags)('Tema'),
     (0, common_2.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Controller)('/tema'),
+    (0, decorators_2.ApiBearerAuth)(),
     __metadata("design:paramtypes", [tema_service_1.TemaService])
 ], TemaController);
 exports.TemaController = TemaController;
