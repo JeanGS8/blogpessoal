@@ -60,7 +60,7 @@ export class TemaController{
         @Param('id', ParseIntPipe)
         id: number
     ) {
-
+        return this.temaService.delete(id);
     }
 
 }
